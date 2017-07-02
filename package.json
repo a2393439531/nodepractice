@@ -1,0 +1,19 @@
+{
+  "name": "nodepractice",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a2393439531/nodepractice.git"
+  },
+  "author": "a2393439531 <2393439531@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a2393439531/nodepractice/issues"
+  },
+  "homepage": "https://github.com/a2393439531/nodepractice#readme"
+}
