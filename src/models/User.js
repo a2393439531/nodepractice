@@ -1,22 +1,21 @@
-'use strict'
+'use strict';
+
 /**
- * Created by Administrator on 2017/7/2 0002.
+ * pratics Node.js project
+ * 
+ * @author hank guo <291752361@qq.com>
  */
-
-
-
 import mongoose from 'mongoose';
 
-module.exports = function (done) {
+module.exports = function(done) {
     const Schema = mongoose.Schema;
     const ObjectId = Schema.ObjectId;
     const User = new Schema({
-        name : {type:String,unique:true},
-        password :{type:String},
-        nickname :{type:String}
+        name: { type: String, unique: true },
+        password: { type: String },
+        nickname: { type: String }
     });
-    $.mongodb.model('User',User);
-    $.model.User=$.mongodb.model('User');
-
+    $.mongodb.model('User', User);
+    $.model.User = $.mongodb.model('User');
     done();
-}
+};

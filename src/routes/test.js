@@ -1,18 +1,10 @@
-/**
- * Created by Administrator on 2017/7/2 0002.
- */
-import path from 'path';
+'use strict';
 
-module.exports = function (done) {
 
-    $.router.get('*', function (req, res, next) {
-        if (req.url.indexOf('/api/') !== 0 && req.url.indexOf('/build/') !== 0) {
-            res.sendFile(path.resolve(__dirname, '../../frontend/index.html'));
-        } else {
-            next();
-        }
+module.exports = function(done) {
+    $.router.get('/', function(req, res, next) {
+        res.end(`现在是北京时间${new Date()}`);
     });
 
     done();
-
 };

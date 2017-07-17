@@ -1,17 +1,14 @@
-/**
- * Created by Administrator on 2017/7/2 0002.
- */
 'use strict';
 
-var _mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var _mongoose2 = _interopRequireDefault(_mongoose);
+module.exports = function(done) {
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    const debug = $.createDebug('init:mongodb');
+    debug("connecting to MongoDB...");
 
-module.exports = function (done) {
-    const conn = _mongoose2.default.createConnection($.config.get('db.mongodb'));
+    const conn = mongoose.createConnection($.config.get('db.mongodb'));
     $.mongodb = conn;
-
+    $.model = {};
     done();
 };

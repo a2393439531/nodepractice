@@ -1,46 +1,51 @@
-/**
- * Created by Administrator on 2017/7/2 0002.
- */
 'use strict';
+
+/**
+ * pratics Node.js project
+ * 
+ * @author hank guo <291752361@qq.com>
+ */
+
 import path from 'path';
 import ProjectCore from 'project-core';
+import createDebug from 'debug';
 
-const $ = global.$= new ProjectCore();
+const $ = global.$ = new ProjectCore();
 
-$.init.add((done)=> {
-    $.config.load(path.resolve(__dirname,'config.js'));
+// 创建Debug函数
+$.createDebug = function(name) {
+    return createDebug('my:' + name);
+};
+const debug = $.createDebug('server');
+
+// 加载配置文件
+$.init.add((done) => {
+    $.config.load(path.resolve(__dirname, 'config.js'));
     const env = process.env.NODE_ENV || null;
-    if(env){
-
-        $.config.load(path.resolve(__dirname,'../config',env+".js"));
+    if (env) {
+        debug('load env: %s', env)
+        $.config.load(path.resolve(__dirname, '../config', env + '.js'));
     }
     $.env = env;
     done();
 });
 
+// 初始化MongoDB
+$.init.load(path.resolve(__dirname, 'init', 'mongodb.js'));
+// 加载Models
+$.init.load(path.resolve(__dirname, 'models'));
 
+// 初始化express
+$.init.load(path.resolve(__dirname, 'init', 'express.js'));
+// 加载路由
+$.init.load(path.resolve(__dirname, 'routes'));
 
-$.init.load(path.resolve(__dirname,'init','mongodb.js'));
-
-$.init.load(path.resolve(__dirname,'models'));
-
-$.init.load(path.resolve(__dirname,'init','express'));
-
-$.init.load(path.resolve(__dirname,'route'));
-//init
-$.init((err)=> {
-    if(err) {
+// 初始化
+$.init((err) => {
+    if (err) {
         console.error(err);
         process.exit(-1);
-    }else{
-        console.log('inited');
+    } else {
+        console.log('inited [env=%s]', $.env);
     }
-
-    const item=new $.model.User({
-        name:'dsaf',
-        password : '1232123',
-        nickname : 'testuser',
-    });
-    item.save(console.log);
-
-});
+})

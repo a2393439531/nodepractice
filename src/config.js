@@ -1,9 +1,11 @@
-/**
- * Created by Administrator on 2017/7/2 0002.
- */
 'use strict';
 
+/**
+ * pratics Node.js project
+ * 
+ * @author hank guo <291752361@qq.com>
+ */
 
-module.exports = function (set,get,has) {
-    set('db.mongodb','mongodb://127.0.0.1/practice_nodejs_project')
-}
+module.exports = function(set, get, has) {
+    set('web.port', '3000');
+};
